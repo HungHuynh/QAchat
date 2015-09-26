@@ -14,6 +14,10 @@
 		9E167F371BB648D100B6B17A /* QAchat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E167F351BB648D100B6B17A /* QAchat.xcdatamodeld */; };
 		9E167F391BB648D100B6B17A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E167F381BB648D100B6B17A /* Assets.xcassets */; };
 		9E167F3C1BB648D100B6B17A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E167F3A1BB648D100B6B17A /* LaunchScreen.storyboard */; };
+		9E167F4D1BB64EE300B6B17A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E167F4C1BB64EE300B6B17A /* HomeViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9E167F501BB64EF100B6B17A /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E167F4F1BB64EF100B6B17A /* QuestionViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9E167F531BB64F0C00B6B17A /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E167F521BB64F0C00B6B17A /* AnswerViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9E167F561BB64F2B00B6B17A /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E167F551BB64F2B00B6B17A /* UserViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,14 @@
 		9E167F381BB648D100B6B17A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E167F3B1BB648D100B6B17A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E167F3D1BB648D100B6B17A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E167F4B1BB64EE300B6B17A /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		9E167F4C1BB64EE300B6B17A /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		9E167F4E1BB64EF100B6B17A /* QuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionViewController.h; sourceTree = "<group>"; };
+		9E167F4F1BB64EF100B6B17A /* QuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionViewController.m; sourceTree = "<group>"; };
+		9E167F511BB64F0C00B6B17A /* AnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerViewController.h; sourceTree = "<group>"; };
+		9E167F521BB64F0C00B6B17A /* AnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerViewController.m; sourceTree = "<group>"; };
+		9E167F541BB64F2B00B6B17A /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		9E167F551BB64F2B00B6B17A /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +74,7 @@
 			children = (
 				9E167F2C1BB648D100B6B17A /* AppDelegate.h */,
 				9E167F2D1BB648D100B6B17A /* AppDelegate.m */,
+				9E167F441BB64D4800B6B17A /* ViewController */,
 				9E167F2F1BB648D100B6B17A /* ViewController.h */,
 				9E167F301BB648D100B6B17A /* ViewController.m */,
 				9E167F321BB648D100B6B17A /* Main.storyboard */,
@@ -80,6 +93,21 @@
 				9E167F2A1BB648D100B6B17A /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9E167F441BB64D4800B6B17A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9E167F4B1BB64EE300B6B17A /* HomeViewController.h */,
+				9E167F4C1BB64EE300B6B17A /* HomeViewController.m */,
+				9E167F4E1BB64EF100B6B17A /* QuestionViewController.h */,
+				9E167F4F1BB64EF100B6B17A /* QuestionViewController.m */,
+				9E167F511BB64F0C00B6B17A /* AnswerViewController.h */,
+				9E167F521BB64F0C00B6B17A /* AnswerViewController.m */,
+				9E167F541BB64F2B00B6B17A /* UserViewController.h */,
+				9E167F551BB64F2B00B6B17A /* UserViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,7 +182,11 @@
 			files = (
 				9E167F311BB648D100B6B17A /* ViewController.m in Sources */,
 				9E167F371BB648D100B6B17A /* QAchat.xcdatamodeld in Sources */,
+				9E167F531BB64F0C00B6B17A /* AnswerViewController.m in Sources */,
+				9E167F501BB64EF100B6B17A /* QuestionViewController.m in Sources */,
 				9E167F2E1BB648D100B6B17A /* AppDelegate.m in Sources */,
+				9E167F561BB64F2B00B6B17A /* UserViewController.m in Sources */,
+				9E167F4D1BB64EE300B6B17A /* HomeViewController.m in Sources */,
 				9E167F2B1BB648D100B6B17A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +334,7 @@
 				9E167F421BB648D100B6B17A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
