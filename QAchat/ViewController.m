@@ -17,6 +17,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    [SIOSocket socketWithHost: @"http://localhost:5000/test" response: ^(SIOSocket *socket)
+     {
+         self.socket = socket;
+         
+         __weak typeof(self) weakSelf = self;
+         self.socket.onConnect = ^()
+         {
+             weakSelf.socketIsConnected = YES;
+             NSLog(@"connected");
+             
+             [weakSelf.socket emit:@"my broadcast event" args:@[[NSDictionary dictionaryWithObjects:@[@"Hello"] forKeys:@[@"data"]]]];
+         };
+         
+         self.socket.onDisconnect = ^() {
+             NSLog(@"disconnected");
+         };
+         
+         self.socket.onError = ^(NSDictionary* error) {
+             NSLog(@"Error : %@", error);
+         };
+         
+         [self.socket on: @"my response" callback: ^(SIOParameterArray *args) {
+             NSString *response = [args firstObject];
+              NSLog(@"my response : %@", response);
+         }];
+         
+        
+     }];
 }
 
 - (void)didReceiveMemoryWarning {

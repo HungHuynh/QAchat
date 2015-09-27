@@ -18,6 +18,13 @@
 		9E167F501BB64EF100B6B17A /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E167F4F1BB64EF100B6B17A /* QuestionViewController.m */; settings = {ASSET_TAGS = (); }; };
 		9E167F531BB64F0C00B6B17A /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E167F521BB64F0C00B6B17A /* AnswerViewController.m */; settings = {ASSET_TAGS = (); }; };
 		9E167F561BB64F2B00B6B17A /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E167F551BB64F2B00B6B17A /* UserViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9E2A60361BB7089F002B2843 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2A60351BB7089F002B2843 /* CFNetwork.framework */; };
+		9E2A60391BB708BC002B2843 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2A60381BB708BC002B2843 /* Security.framework */; };
+		9E2A603B1BB708DF002B2843 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2A603A1BB708DF002B2843 /* Foundation.framework */; };
+		9E2A603D1BB708EA002B2843 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2A603C1BB708EA002B2843 /* UIKit.framework */; };
+		9E2A603F1BB708F2002B2843 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2A603E1BB708F2002B2843 /* CoreGraphics.framework */; };
+		9E2A60411BB709BA002B2843 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2A60401BB709BA002B2843 /* libicucore.tbd */; };
+		9E2A604F1BB72B98002B2843 /* SIOSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2A604D1BB72B98002B2843 /* SIOSocket.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +47,16 @@
 		9E167F521BB64F0C00B6B17A /* AnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerViewController.m; sourceTree = "<group>"; };
 		9E167F541BB64F2B00B6B17A /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		9E167F551BB64F2B00B6B17A /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		9E2A60351BB7089F002B2843 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9E2A60381BB708BC002B2843 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9E2A603A1BB708DF002B2843 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9E2A603C1BB708EA002B2843 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9E2A603E1BB708F2002B2843 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9E2A60401BB709BA002B2843 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		9E2A604C1BB72B98002B2843 /* SIOSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIOSocket.h; sourceTree = "<group>"; };
+		9E2A604D1BB72B98002B2843 /* SIOSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIOSocket.m; sourceTree = "<group>"; };
+		9E2A604E1BB72B98002B2843 /* socket.io.js.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.io.js.h; sourceTree = "<group>"; };
+		9E2A60551BB78CF0002B2843 /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +64,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E2A60411BB709BA002B2843 /* libicucore.tbd in Frameworks */,
+				9E2A603F1BB708F2002B2843 /* CoreGraphics.framework in Frameworks */,
+				9E2A603D1BB708EA002B2843 /* UIKit.framework in Frameworks */,
+				9E2A603B1BB708DF002B2843 /* Foundation.framework in Frameworks */,
+				9E2A60391BB708BC002B2843 /* Security.framework in Frameworks */,
+				9E2A60361BB7089F002B2843 /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				9E167F281BB648D100B6B17A /* QAchat */,
+				9E2A60371BB708AA002B2843 /* Frameworks */,
 				9E167F271BB648D100B6B17A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,16 +96,13 @@
 		9E167F281BB648D100B6B17A /* QAchat */ = {
 			isa = PBXGroup;
 			children = (
+				9E2A60551BB78CF0002B2843 /* Define.h */,
 				9E167F2C1BB648D100B6B17A /* AppDelegate.h */,
 				9E167F2D1BB648D100B6B17A /* AppDelegate.m */,
+				9E2A5FF51BB6FE4D002B2843 /* Libs */,
 				9E167F441BB64D4800B6B17A /* ViewController */,
 				9E167F2F1BB648D100B6B17A /* ViewController.h */,
 				9E167F301BB648D100B6B17A /* ViewController.m */,
-				9E167F321BB648D100B6B17A /* Main.storyboard */,
-				9E167F381BB648D100B6B17A /* Assets.xcassets */,
-				9E167F3A1BB648D100B6B17A /* LaunchScreen.storyboard */,
-				9E167F3D1BB648D100B6B17A /* Info.plist */,
-				9E167F351BB648D100B6B17A /* QAchat.xcdatamodeld */,
 				9E167F291BB648D100B6B17A /* Supporting Files */,
 			);
 			path = QAchat;
@@ -90,7 +111,12 @@
 		9E167F291BB648D100B6B17A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9E167F321BB648D100B6B17A /* Main.storyboard */,
+				9E167F3A1BB648D100B6B17A /* LaunchScreen.storyboard */,
+				9E167F351BB648D100B6B17A /* QAchat.xcdatamodeld */,
+				9E167F381BB648D100B6B17A /* Assets.xcassets */,
 				9E167F2A1BB648D100B6B17A /* main.m */,
+				9E167F3D1BB648D100B6B17A /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -109,6 +135,39 @@
 			);
 			path = ViewController;
 			sourceTree = "<group>";
+		};
+		9E2A5FF51BB6FE4D002B2843 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				9E2A60421BB72018002B2843 /* SocketIO */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		9E2A60371BB708AA002B2843 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E2A60401BB709BA002B2843 /* libicucore.tbd */,
+				9E2A603E1BB708F2002B2843 /* CoreGraphics.framework */,
+				9E2A603C1BB708EA002B2843 /* UIKit.framework */,
+				9E2A603A1BB708DF002B2843 /* Foundation.framework */,
+				9E2A60381BB708BC002B2843 /* Security.framework */,
+				9E2A60351BB7089F002B2843 /* CFNetwork.framework */,
+			);
+			name = Frameworks;
+			path = QAchat;
+			sourceTree = "<group>";
+		};
+		9E2A60421BB72018002B2843 /* SocketIO */ = {
+			isa = PBXGroup;
+			children = (
+				9E2A604C1BB72B98002B2843 /* SIOSocket.h */,
+				9E2A604D1BB72B98002B2843 /* SIOSocket.m */,
+				9E2A604E1BB72B98002B2843 /* socket.io.js.h */,
+			);
+			name = SocketIO;
+			path = QAchat/Libs/SocketIO;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -187,6 +246,7 @@
 				9E167F2E1BB648D100B6B17A /* AppDelegate.m in Sources */,
 				9E167F561BB64F2B00B6B17A /* UserViewController.m in Sources */,
 				9E167F4D1BB64EE300B6B17A /* HomeViewController.m in Sources */,
+				9E2A604F1BB72B98002B2843 /* SIOSocket.m in Sources */,
 				9E167F2B1BB648D100B6B17A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,6 +358,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = QAchat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hunghuynh.QAchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -309,6 +370,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = QAchat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hunghuynh.QAchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SIOSocket.h"
 
 @interface ViewController : UIViewController
 
+@property  SIOSocket *socket;
+@property  BOOL socketIsConnected;
 
 @end
 
