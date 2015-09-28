@@ -9,6 +9,7 @@
 #import "AnswerViewController.h"
 
 @interface AnswerViewController ()
+- (IBAction)selectDone:(id)sender;
 
 @end
 
@@ -34,4 +35,7 @@
 }
 */
 
+- (IBAction)selectDone:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
 @end

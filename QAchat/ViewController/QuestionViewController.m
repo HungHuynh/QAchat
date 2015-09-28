@@ -7,12 +7,18 @@
 //
 
 #import "QuestionViewController.h"
+#import "AppDelegate.h"
 
 @interface QuestionViewController ()
+
+- (IBAction)selectAddQuestion:(id)sender;
 
 @end
 
 @implementation QuestionViewController
+
+@synthesize tblQuestion = _tblQuestion;
+@synthesize tfdQuestion = _tfdQuestion;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,5 +39,77 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)selectAddQuestion:(id)sender {
+    _tfdQuestion.hidden = false;
+    _tblQuestion.hidden = true;
+}
+
+#pragma mark - UITextField Delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [_tfdQuestion resignFirstResponder];
+    
+    //Send question to SocketIO backend :
+    AppDelegate *appDelegate = APPDELEGATE;
+    if( appDelegate.socketIsConnected ) {
+        [appDelegate.socket emit:SOCKETIO_EVENT_QUESTION args:@[[NSDictionary dictionaryWithObjects:@[_tfdQuestion.text] forKeys:@[@"data"]]]];
+    }
+    
+    
+    _tfdQuestion.text = @"";
+    _tfdQuestion.hidden = true;
+    _tblQuestion.hidden = false;
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    AnswerViewController *answerView = (AnswerViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AnswerViewController"];
+    [self.navigationController pushViewController:answerView animated:true];
+    
+    //[self presentViewController:answerView animated:false completion:nil];
+    return NO;
+}
+
+#pragma mark - Hiden foot tableview
+-(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 1.0;
+}
+
+-(UIView*)tableView:(UITableView*)tableView viewForFooterInSection:(NSInteger)section
+{
+    return [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+#pragma mark - UITableView Datasource
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    AppDelegate *appDelegate = APPDELEGATE;
+    return appDelegate.arrayQuestion.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 45;
+}
+
+
+#pragma mark - UITableView Delegate
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"QuestionCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if( cell == nil) {
+        cell = [[UITableViewCell alloc] init];
+    }
+    
+    AppDelegate *appDelegate = APPDELEGATE;
+    cell.textLabel.text = [appDelegate.arrayQuestion objectAtIndex:indexPath.row];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    AnswerViewController *answerView = (AnswerViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AnswerViewController"];
+    [self.navigationController pushViewController:answerView animated:true];
+}
 
 @end

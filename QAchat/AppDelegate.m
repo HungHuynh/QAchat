@@ -14,9 +14,23 @@
 
 @implementation AppDelegate
 
+@synthesize socket = _socket;
+@synthesize arrayAnswer = _arrayAnswer;
+@synthesize arrayQuestion = _arrayQuestion;
+@synthesize socketIsConnected = _socketIsConnected;
+
+@synthesize questionView = _questionView;
+@synthesize answerView = _answerView;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    _arrayQuestion = [[NSMutableArray alloc] init];
+    _arrayAnswer = [[NSMutableArray alloc] init];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    _questionView = (QuestionViewController *)[storyboard instantiateViewControllerWithIdentifier:@"QuestionViewController"];
+    _answerView = (AnswerViewController *)[storyboard instantiateViewControllerWithIdentifier:@"AnswerViewController"];
     return YES;
 }
 
@@ -41,87 +55,58 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
 }
 
-#pragma mark - Core Data stack
-
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-
-- (NSURL *)applicationDocumentsDirectory {
-    // The directory the application uses to store the Core Data store file. This code uses a directory named "com.hunghuynh.QAchat" in the application's documents directory.
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+- (void)connectSocketIO:(NSString*) username {
+    [SIOSocket socketWithHost:[NSString stringWithFormat:@"%@:%@/%@",SOCKETIO_ADDR,SOCKETIO_PORT,SOCKETIO_NAMESPACE] response: ^(SIOSocket *socket)
+     {
+         self.socket = socket;
+         
+         __weak typeof(self) weakSelf = self;
+         
+         self.socket.onConnect = ^()
+         {
+             weakSelf.socketIsConnected = YES;
+             NSLog(@"connected");
+             
+             [weakSelf.socket emit:SOCKETIO_EVENT_REGISTER args:@[[NSDictionary dictionaryWithObjects:@[username] forKeys:@[@"username"]]]];
+         };
+         
+         self.socket.onDisconnect = ^() {
+             weakSelf.socketIsConnected = NO;
+             NSLog(@"disconnected");
+         };
+         
+         self.socket.onReconnect = ^(NSInteger count) {
+             NSLog(@"reconnected %ld",(long)count);
+             
+             //[weakSelf.socket emit:SOCKETIO_EVENT_REGISTER args:@[[NSDictionary dictionaryWithObjects:@[username] forKeys:@[@"username"]]]];
+         };
+         
+         self.socket.onError = ^(NSDictionary* error) {
+             NSLog(@"Error : %@", error);
+         };
+         
+         [self.socket on:SOCKETIO_EVENT_RESPONSE callback: ^(SIOParameterArray *args) {
+             NSString *response = [args firstObject];
+             NSLog(@"my response : %@", [response valueForKey:@"data"]);
+             
+             //Register
+             if([[response valueForKey:@"type"]  isEqual: @"Register"]) {
+//                 weakSelf.window.rootViewController = _questionView;
+             }
+             
+             if([[response valueForKey:@"type"]  isEqual: @"Question"] && [response valueForKey:@"data"] != nil) {
+                 [_arrayQuestion addObject:[response valueForKey:@"data"]];
+                 [_questionView.tblQuestion reloadData];
+             }
+         }];
+         
+     }];
 }
 
-- (NSManagedObjectModel *)managedObjectModel {
-    // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
-    if (_managedObjectModel != nil) {
-        return _managedObjectModel;
-    }
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"QAchat" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return _managedObjectModel;
-}
-
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-    // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it.
-    if (_persistentStoreCoordinator != nil) {
-        return _persistentStoreCoordinator;
-    }
+- (void)selectQuestion {
     
-    // Create the coordinator and store
-    
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"QAchat.sqlite"];
-    NSError *error = nil;
-    NSString *failureReason = @"There was an error creating or loading the application's saved data.";
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        // Report any error we got.
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
-        dict[NSLocalizedFailureReasonErrorKey] = failureReason;
-        dict[NSUnderlyingErrorKey] = error;
-        error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
-        // Replace this with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-    
-    return _persistentStoreCoordinator;
-}
-
-
-- (NSManagedObjectContext *)managedObjectContext {
-    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
-    }
-    
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (!coordinator) {
-        return nil;
-    }
-    _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-    return _managedObjectContext;
-}
-
-#pragma mark - Core Data Saving support
-
-- (void)saveContext {
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil) {
-        NSError *error = nil;
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
-        }
-    }
 }
 
 @end

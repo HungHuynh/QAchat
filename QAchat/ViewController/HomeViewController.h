@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Define.h"
+#import "AppDelegate.h"
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : UIViewController <UITextFieldDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextField *tfdUsername;
+@property (weak, nonatomic) IBOutlet UILabel *lblLogoApp;
 
 @end

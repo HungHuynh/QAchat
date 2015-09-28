@@ -7,19 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
+#import "SIOSocket.h"
+#import "Define.h"
+
+#import "QuestionViewController.h"
+#import "AnswerViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (retain, nonatomic) SIOSocket *socket;
+@property (assign, nonatomic) BOOL socketIsConnected;
+
+@property (retain, nonatomic) NSMutableArray *arrayQuestion;
+@property (retain, nonatomic) NSMutableArray *arrayAnswer;
+
 @property (strong, nonatomic) UIWindow *window;
 
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (retain, nonatomic) QuestionViewController *questionView;
+@property (retain, nonatomic) AnswerViewController *answerView;
 
-- (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
-
+- (void)connectSocketIO:(NSString*)username;
 
 @end
 

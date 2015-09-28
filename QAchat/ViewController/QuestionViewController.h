@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QuestionViewController : UIViewController
+@interface QuestionViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UINavigationBarDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *tblQuestion;
+@property (weak, nonatomic) IBOutlet UITextField *tfdQuestion;
 @end
